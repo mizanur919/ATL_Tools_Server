@@ -119,7 +119,7 @@ app.get("/", (req, res) => {
   res.send("server from node server");
 });
 
-app.get("/testing", () => {
+app.get("/testing", (req, res) => {
   res.send("testing pass");
 });
 
