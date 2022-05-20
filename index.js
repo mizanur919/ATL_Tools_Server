@@ -119,6 +119,10 @@ app.get("/", (req, res) => {
   res.send("server from node server");
 });
 
+app.get("/testing", () => {
+  res.send("testing pass");
+});
+
 app.listen(port, () => {
   console.log("listing form port ", port);
 });
