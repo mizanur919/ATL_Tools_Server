@@ -29,6 +29,7 @@ async function run() {
     const database = client.db("ssdm");
     const installationToolsCollection =
       database.collection("InstallationTools");
+    const productsCollection = database.collection("products");
 
     // GET API
     app.get("/InstallationToolsList", async (req, res) => {
@@ -50,6 +51,17 @@ async function run() {
       const query = { _id: ObjectId(id) };
       const result = await installationToolsCollection.deleteOne(query);
       res.json(result);
+    });
+
+    /////////////////////////////
+    ////// Products API /////////
+    /////////////////////////////
+
+    // GET API
+    app.get("/products", async (req, res) => {
+      const cursor = productsCollection.find({});
+      const toolsList = await cursor.toArray();
+      res.send(toolsList);
     });
 
     // // GET Single Product
