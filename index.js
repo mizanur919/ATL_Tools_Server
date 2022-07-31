@@ -30,6 +30,7 @@ async function run() {
     const installationToolsCollection =
       database.collection("InstallationTools");
     const productsCollection = database.collection("products");
+    const serviceInfoCollection = database.collection("serviceinfo");
 
     // GET API
     app.get("/InstallationToolsList", async (req, res) => {
@@ -70,6 +71,13 @@ async function run() {
       const query = { _id: ObjectId(id) };
       const product = await productsCollection.findOne(query);
       res.json(product);
+    });
+
+    //////// Sevice Info  //////
+    app.get("/serviceinfo", async (req, res) => {
+      const cursor = serviceInfoCollection.find({});
+      const toolsList = await cursor.toArray();
+      res.send(toolsList);
     });
 
     // // GET Single Product
